@@ -1,0 +1,30 @@
+service: image-resizer
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ap-southeast-2
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:GetObject
+        - s3:PutObject
+      Resource: arn:aws:s3:::image-resizer-uploads/*
+
+functions:
+  getPresignedUrl:
+    handler: getPresignedUrl/index.handler
+    events:
+      - http:
+          path: presigned-url
+          method: get
+          cors: true
+
+  imageProcessor:
+    handler: imageProcessor/index.handler
+    events:
+      - s3:
+          bucket: image-resizer-uploads
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: uploads/original/

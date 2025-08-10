@@ -1,0 +1,19 @@
+{
+  "name": "appresizebackend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "aws-sdk": "^2.1692.0",
+    "i": "^0.3.7",
+    "npm": "^11.5.2",
+    "sharp": "^0.34.3"
+  }
+}
