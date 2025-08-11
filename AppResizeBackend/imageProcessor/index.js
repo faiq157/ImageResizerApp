@@ -1,6 +1,7 @@
 const AWS = require('aws-sdk');
 const S3 = new AWS.S3();
-const sharp = require('sharp'); 
+const sharp = require('sharp');
+const path = require('path');
 
 exports.handler = async (event) => {
   console.log("EVENT RECEIVED:", JSON.stringify(event, null, 2));
@@ -23,29 +24,26 @@ exports.handler = async (event) => {
     console.log("Resizing image...");
     const resizedBuffer = await sharp(originalImage.Body)
       .resize({ width: 800 })
-      .jpeg({ quality: 80 })  
+      .jpeg({ quality: 80 })
       .toBuffer();
+
     const afterSize = resizedBuffer.length;
     console.log(`Resized size: ${afterSize} bytes`);
-
-    const resizedKey = key.replace("original", "resized");
+    const resizedKey = key.replace(/^uploads\/original\//, 'uploads/resized/');
+    const region = process.env.AWS_REGION || 'ap-southeast-2';
+    const resizedUrl = `https://${bucket}.s3.${region}.amazonaws.com/${resizedKey}`;
+ 
     console.log(`Uploading resized image to: ${resizedKey}`);
 
-   await S3.putObject({
-  Bucket: bucket,
-  Key: resizedKey.replace("resized/", "resized/meta.json"),
-  Body: JSON.stringify({
-    originalKey: key,
-    resizedKey,
-    beforeSizeBytes: beforeSize,
-    afterSizeBytes: afterSize,
-    resizedUrl
-  }),
-  ContentType: 'application/json'
-}).promise();
+    await S3.putObject({
+      Bucket: bucket,
+      Key: resizedKey,
+      Body: resizedBuffer,
+      ContentType: 'image/jpeg',
+    }).promise();
 
     console.log("Image resized and uploaded successfully.");
-    const resizedUrl = `https://${bucket}.s3.${process.env.AWS_REGION}.amazonaws.com/${resizedKey}`;
+    console.log(`Uploaded resized image to: ${resizedUrl}`);
     return {
       statusCode: 200,
       headers: {
@@ -56,10 +54,7 @@ exports.handler = async (event) => {
       body: JSON.stringify({
         message: "Image resized and uploaded",
         originalKey: key,
-        resizedKey: resizedKey,
-        beforeSizeBytes: beforeSize,
-        afterSizeBytes: afterSize,
-        resizedUrl: resizedUrl
+        resizedUrl:resizedUrl 
       }),
     };
   } catch (error) {

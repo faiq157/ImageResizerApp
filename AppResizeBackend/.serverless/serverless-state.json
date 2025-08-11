@@ -122,7 +122,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-ap-southeast-2-eccec8d5-1372",
-                "S3Key": "serverless/image-resizer/dev/1754883024040-2025-08-11T03:30:24.040Z/image-resizer.zip"
+                "S3Key": "serverless/image-resizer/dev/1754912630629-2025-08-11T11:43:50.629Z/image-resizer.zip"
               },
               "Handler": "getPresignedUrl/index.handler",
               "Runtime": "nodejs18.x",
@@ -145,7 +145,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-ap-southeast-2-eccec8d5-1372",
-                "S3Key": "serverless/image-resizer/dev/1754883024040-2025-08-11T03:30:24.040Z/image-resizer.zip"
+                "S3Key": "serverless/image-resizer/dev/1754912630629-2025-08-11T11:43:50.629Z/image-resizer.zip"
               },
               "Handler": "imageProcessor/index.handler",
               "Runtime": "nodejs18.x",
@@ -163,24 +163,24 @@
               "ImageProcessorLogGroup"
             ]
           },
-          "GetPresignedUrlLambdaVersionGgiIt8JUozj2vAoEbzK8lGH4XxCPxDPRXilMh4ils": {
+          "GetPresignedUrlLambdaVersioneL1Hnw9mEVRGJB1lFq1GbuWywb1wLNlRwEqD9E6DsiE": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetPresignedUrlLambdaFunction"
               },
-              "CodeSha256": "Kdo2J1EioyDSfzHVwIBnivL3FVePik5KwvAb+fMc/Q0="
+              "CodeSha256": "VeRT2ZT2H92Y8l0itxQcNYG08HcDAFvo1uFyHe731v4="
             }
           },
-          "ImageProcessorLambdaVersionoek3Yu5h17N50qHMvYocy8V6oqLiWbeUoMZkcq8g7Q": {
+          "ImageProcessorLambdaVersion97PkbL6ncHWQGBC0ap7U0Z7PtDrZACZBBn3yx8Hj4M": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ImageProcessorLambdaFunction"
               },
-              "CodeSha256": "Kdo2J1EioyDSfzHVwIBnivL3FVePik5KwvAb+fMc/Q0="
+              "CodeSha256": "VeRT2ZT2H92Y8l0itxQcNYG08HcDAFvo1uFyHe731v4="
             }
           },
           "S3BucketImageresizeruploads": {
@@ -361,7 +361,7 @@
               "GetPresignedUrlLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1754883006257": {
+          "ApiGatewayDeployment1754912609101": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -422,7 +422,7 @@
           "GetPresignedUrlLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetPresignedUrlLambdaVersionGgiIt8JUozj2vAoEbzK8lGH4XxCPxDPRXilMh4ils"
+              "Ref": "GetPresignedUrlLambdaVersioneL1Hnw9mEVRGJB1lFq1GbuWywb1wLNlRwEqD9E6DsiE"
             },
             "Export": {
               "Name": "sls-image-resizer-dev-GetPresignedUrlLambdaFunctionQualifiedArn"
@@ -431,7 +431,7 @@
           "ImageProcessorLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ImageProcessorLambdaVersionoek3Yu5h17N50qHMvYocy8V6oqLiWbeUoMZkcq8g7Q"
+              "Ref": "ImageProcessorLambdaVersion97PkbL6ncHWQGBC0ap7U0Z7PtDrZACZBBn3yx8Hj4M"
             },
             "Export": {
               "Name": "sls-image-resizer-dev-ImageProcessorLambdaFunctionQualifiedArn"
@@ -503,7 +503,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "GetPresignedUrlLambdaVersionGgiIt8JUozj2vAoEbzK8lGH4XxCPxDPRXilMh4ils"
+        "versionLogicalId": "GetPresignedUrlLambdaVersioneL1Hnw9mEVRGJB1lFq1GbuWywb1wLNlRwEqD9E6DsiE"
       },
       "imageProcessor": {
         "handler": "imageProcessor/index.handler",
@@ -526,7 +526,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "ImageProcessorLambdaVersionoek3Yu5h17N50qHMvYocy8V6oqLiWbeUoMZkcq8g7Q"
+        "versionLogicalId": "ImageProcessorLambdaVersion97PkbL6ncHWQGBC0ap7U0Z7PtDrZACZBBn3yx8Hj4M"
       }
     },
     "configValidationMode": "warn",
@@ -546,7 +546,7 @@
     "artifact": "/home/faiqahmad/ImageResizerApp/AppResizeBackend/.serverless/image-resizer.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/image-resizer/dev/1754883024040-2025-08-11T03:30:24.040Z",
+    "artifactDirectoryName": "serverless/image-resizer/dev/1754912630629-2025-08-11T11:43:50.629Z",
     "artifact": "image-resizer.zip"
   }
 }
