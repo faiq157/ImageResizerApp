@@ -18,7 +18,7 @@ exports.handler = async (event) => {
     return {
       statusCode: 200,
       headers: {
-        "Access-Control-Allow-Origin": "*", // or "http://localhost:5173" for stricter security
+        "Access-Control-Allow-Origin": "*", 
         "Access-Control-Allow-Headers": "Content-Type,Authorization",
         "Access-Control-Allow-Methods": "OPTIONS,GET,PUT,POST",
       },

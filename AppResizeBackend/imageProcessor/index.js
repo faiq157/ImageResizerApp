@@ -17,7 +17,6 @@ exports.handler = async (event) => {
     console.log(`Fetching original image from: ${bucket}/${key}`);
     const originalImage = await S3.getObject({ Bucket: bucket, Key: key }).promise();
 
-    // Before size (in bytes)
     const beforeSize = originalImage.Body.length;
     console.log(`Original size: ${beforeSize} bytes`);
 
@@ -26,8 +25,6 @@ exports.handler = async (event) => {
       .resize({ width: 800 })
       .jpeg({ quality: 80 })  
       .toBuffer();
-
-    // After size (in bytes)
     const afterSize = resizedBuffer.length;
     console.log(`Resized size: ${afterSize} bytes`);
 
@@ -48,10 +45,7 @@ exports.handler = async (event) => {
 }).promise();
 
     console.log("Image resized and uploaded successfully.");
-    
-    // Public URL for the resized image
     const resizedUrl = `https://${bucket}.s3.${process.env.AWS_REGION}.amazonaws.com/${resizedKey}`;
-
     return {
       statusCode: 200,
       headers: {

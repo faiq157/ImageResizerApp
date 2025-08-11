@@ -26,29 +26,24 @@ export default function ImageUploader() {
 
       const fileName = encodeURIComponent(file.name);
       const fileType = encodeURIComponent(file.type);
-
-      // 1️⃣ Get Presigned URL
       const presignedRes = await axios.get(
         `https://90la2ucvwg.execute-api.ap-southeast-2.amazonaws.com/dev/presigned-url?fileName=${fileName}&fileType=${fileType}`
       );
 
       const { uploadURL } = presignedRes.data;
 
-      // 2️⃣ Upload to S3
       await axios.put(uploadURL, file, {
         headers: { "Content-Type": file.type },
       });
 
-      setMessage("✅ File uploaded successfully!");
-
-      // 3️⃣ Generate expected resized URL (you can replace with API fetch later)
+      setMessage(" File uploaded successfully!");
       const resizedPath = `uploads/resized/${file.name}`;
       const resizedUrlGuess = `https://image-resizer-uploads.s3.ap-southeast-2.amazonaws.com/${resizedPath}`;
       setResizedUrl(resizedUrlGuess);
 
     } catch (err) {
       console.error(err);
-      setMessage("❌ Upload failed.");
+      setMessage(" Upload failed.");
     } finally {
       setUploading(false);
     }
