@@ -17,30 +17,55 @@ exports.handler = async (event) => {
     console.log(`Fetching original image from: ${bucket}/${key}`);
     const originalImage = await S3.getObject({ Bucket: bucket, Key: key }).promise();
 
+    // Before size (in bytes)
+    const beforeSize = originalImage.Body.length;
+    console.log(`Original size: ${beforeSize} bytes`);
+
     console.log("Resizing image...");
     const resizedBuffer = await sharp(originalImage.Body)
       .resize({ width: 800 })
       .jpeg({ quality: 80 })  
       .toBuffer();
 
+    // After size (in bytes)
+    const afterSize = resizedBuffer.length;
+    console.log(`Resized size: ${afterSize} bytes`);
+
     const resizedKey = key.replace("original", "resized");
     console.log(`Uploading resized image to: ${resizedKey}`);
 
-    await S3.putObject({
-      Bucket: bucket,
-      Key: resizedKey,
-      Body: resizedBuffer,
-      ContentType: 'image/jpeg',
-    }).promise();
+   await S3.putObject({
+  Bucket: bucket,
+  Key: resizedKey.replace("resized/", "resized/meta.json"),
+  Body: JSON.stringify({
+    originalKey: key,
+    resizedKey,
+    beforeSizeBytes: beforeSize,
+    afterSizeBytes: afterSize,
+    resizedUrl
+  }),
+  ContentType: 'application/json'
+}).promise();
 
     console.log("Image resized and uploaded successfully.");
     
+    // Public URL for the resized image
+    const resizedUrl = `https://${bucket}.s3.${process.env.AWS_REGION}.amazonaws.com/${resizedKey}`;
+
     return {
       statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Content-Type,Authorization",
+        "Access-Control-Allow-Methods": "OPTIONS,GET,PUT,POST",
+      },
       body: JSON.stringify({
         message: "Image resized and uploaded",
         originalKey: key,
         resizedKey: resizedKey,
+        beforeSizeBytes: beforeSize,
+        afterSizeBytes: afterSize,
+        resizedUrl: resizedUrl
       }),
     };
   } catch (error) {

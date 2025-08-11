@@ -1,5 +1,5 @@
 {
-  "whyContinueWithGen1": "Prefer not to answer",
+  "whyContinueWithGen1": "I am a current Gen 1 user",
   "projectName": "AppRsizeFrotnend",
   "version": "3.1",
   "frontend": "javascript",
@@ -8,8 +8,8 @@
     "config": {
       "SourceDir": "src",
       "DistributionDir": "build",
-      "BuildCommand": "npm.cmd run-script build",
-      "StartCommand": "npm.cmd run-script start"
+      "BuildCommand": "npm run-script build",
+      "StartCommand": "npm run-script start"
     }
   },
   "providers": [
