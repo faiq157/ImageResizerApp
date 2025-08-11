@@ -105,7 +105,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-ap-southeast-2-eccec8d5-1372",
-          "S3Key": "serverless/image-resizer/dev/1754911207034-2025-08-11T11:20:07.034Z/image-resizer.zip"
+          "S3Key": "serverless/image-resizer/dev/1754912630629-2025-08-11T11:43:50.629Z/image-resizer.zip"
         },
         "Handler": "getPresignedUrl/index.handler",
         "Runtime": "nodejs18.x",
@@ -128,7 +128,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-ap-southeast-2-eccec8d5-1372",
-          "S3Key": "serverless/image-resizer/dev/1754911207034-2025-08-11T11:20:07.034Z/image-resizer.zip"
+          "S3Key": "serverless/image-resizer/dev/1754912630629-2025-08-11T11:43:50.629Z/image-resizer.zip"
         },
         "Handler": "imageProcessor/index.handler",
         "Runtime": "nodejs18.x",
@@ -146,24 +146,24 @@
         "ImageProcessorLogGroup"
       ]
     },
-    "GetPresignedUrlLambdaVersionQw5JZHsWGPEDBAyQa4kaDBrkEOkeTte6sBI51clK8": {
+    "GetPresignedUrlLambdaVersioneL1Hnw9mEVRGJB1lFq1GbuWywb1wLNlRwEqD9E6DsiE": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetPresignedUrlLambdaFunction"
         },
-        "CodeSha256": "XDB4qg+8PsNQZz110QADrMCDCrSvmDcCHavMjCiYoNM="
+        "CodeSha256": "VeRT2ZT2H92Y8l0itxQcNYG08HcDAFvo1uFyHe731v4="
       }
     },
-    "ImageProcessorLambdaVersionNmF5etcKnJ5yscodu3J8uPghex2biA1uzoUNBoxKdA": {
+    "ImageProcessorLambdaVersion97PkbL6ncHWQGBC0ap7U0Z7PtDrZACZBBn3yx8Hj4M": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ImageProcessorLambdaFunction"
         },
-        "CodeSha256": "XDB4qg+8PsNQZz110QADrMCDCrSvmDcCHavMjCiYoNM="
+        "CodeSha256": "VeRT2ZT2H92Y8l0itxQcNYG08HcDAFvo1uFyHe731v4="
       }
     },
     "S3BucketImageresizeruploads": {
@@ -344,7 +344,7 @@
         "GetPresignedUrlLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1754911166399": {
+    "ApiGatewayDeployment1754912609101": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -405,7 +405,7 @@
     "GetPresignedUrlLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetPresignedUrlLambdaVersionQw5JZHsWGPEDBAyQa4kaDBrkEOkeTte6sBI51clK8"
+        "Ref": "GetPresignedUrlLambdaVersioneL1Hnw9mEVRGJB1lFq1GbuWywb1wLNlRwEqD9E6DsiE"
       },
       "Export": {
         "Name": "sls-image-resizer-dev-GetPresignedUrlLambdaFunctionQualifiedArn"
@@ -414,7 +414,7 @@
     "ImageProcessorLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ImageProcessorLambdaVersionNmF5etcKnJ5yscodu3J8uPghex2biA1uzoUNBoxKdA"
+        "Ref": "ImageProcessorLambdaVersion97PkbL6ncHWQGBC0ap7U0Z7PtDrZACZBBn3yx8Hj4M"
       },
       "Export": {
         "Name": "sls-image-resizer-dev-ImageProcessorLambdaFunctionQualifiedArn"

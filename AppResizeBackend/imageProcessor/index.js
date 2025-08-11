@@ -32,7 +32,7 @@ exports.handler = async (event) => {
     const resizedKey = key.replace(/^uploads\/original\//, 'uploads/resized/');
     const region = process.env.AWS_REGION || 'ap-southeast-2';
     const resizedUrl = `https://${bucket}.s3.${region}.amazonaws.com/${resizedKey}`;
-
+ 
     console.log(`Uploading resized image to: ${resizedKey}`);
 
     await S3.putObject({
@@ -43,7 +43,7 @@ exports.handler = async (event) => {
     }).promise();
 
     console.log("Image resized and uploaded successfully.");
-
+    console.log(`Uploaded resized image to: ${resizedUrl}`);
     return {
       statusCode: 200,
       headers: {
